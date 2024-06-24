@@ -1,0 +1,39 @@
+<h1 class="introduce">
+  Walking along a trail {{ currentPart }} {{ currentImage.background_url }}
+</h1>
+<div class="viewer">
+  <button
+    *ngIf="currentPart !== -1"
+    id="prevBtn"
+    (click)="prev()"
+    class="nav-button"
+  >
+    ❮
+  </button>
+  <div class="image-container">
+    <img
+      #largeImage
+      id="largeImage"
+      src="{{ imagePath + currentImage.background_url }}"
+      alt="Large Image"
+    />
+  </div>
+  <button
+    *ngIf="currentPart !== -1"
+    id="nextBtn"
+    (click)="next()"
+    class="nav-button"
+  >
+    ❯
+  </button>
+  <ng-container *ngFor="let hitZone of currentImage.hitZones; let i = index">
+    <div
+      class="hit-zone"
+      *ngIf="hitZone.showPart == currentPart"
+      (click)="changeImage(hitZone)"
+      #hitZoneElement
+    >
+      X
+    </div>
+  </ng-container>
+</div>
